@@ -1,39 +1,45 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- STICKY NAVBAR LOGIC ---
+    // 1. Sticky Navbar
     const navbar = document.getElementById("navbar");
     window.onscroll = function() {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 20) {
             navbar.classList.add("scrolled");
         } else {
             navbar.classList.remove("scrolled");
         }
     };
 
-    // --- ANIMATED THEME TOGGLE LOGIC ---
+    // 2. Theme Toggle Logic
     const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
     const body = document.body;
+    
+    // Check local storage for preference
     const currentTheme = localStorage.getItem('theme');
 
-    // 1. Check if user has a previously saved preference
     if (currentTheme) {
-        body.classList.add(currentTheme + '-mode'); // Adds 'light-mode' if saved
-        
+        // If saved theme is Light
         if (currentTheme === 'light') {
-            toggleSwitch.checked = true; // Syncs the slider position
+            body.classList.add('light-mode');
+            toggleSwitch.checked = false; // Left = Light (Sun)
+        } else {
+            body.classList.remove('light-mode');
+            toggleSwitch.checked = true; // Right = Dark (Moon)
         }
+    } else {
+        // Default (No history): Dark Mode -> Switch Checked
+        toggleSwitch.checked = true;
     }
 
-    // 2. Listen for the switch change event
     toggleSwitch.addEventListener('change', function(e) {
         if (e.target.checked) {
-            // Switch moved to "on" position -> Light Mode
-            body.classList.add('light-mode');
-            localStorage.setItem('theme', 'light');
-        } else {
-            // Switch moved to "off" position -> Dark Mode
+            // User moved toggle to Right (Moon) -> Dark Mode
             body.classList.remove('light-mode');
             localStorage.setItem('theme', 'dark');
+        } else {
+            // User moved toggle to Left (Sun) -> Light Mode
+            body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
         }
     });
 });

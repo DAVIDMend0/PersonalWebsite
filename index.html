@@ -5,22 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Mendoza | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Check what this link is supposed to do-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"> <!-- Check what this link is supposed to do-->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">DM.</a> <!--I do not see the need for this to be a link-->
+            <a href="#" class="logo">DAVID MENDOZA</a>
             <ul class="nav-links">
+                
                 <li class="toggle-container">
                     <label class="theme-switch" for="checkbox" aria-label="Toggle Dark and Light Mode">
-                        <input type="checkbox" id="checkbox" />
+                        <input type="checkbox" id="checkbox" checked />
                         <div class="slider round"></div>
                   </label>
                 </li>
-                
+
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -29,97 +33,156 @@
     </nav>
 
     <header id="hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Hello, I'm David Mendoza.</h1>
-            <p class="subtitle">Computer Engineering Student & Technology Enthusiast.</p>
+            <div class="hero-avatar-container">
+                <img src="images/profile.jpg" alt="David Mendoza" class="hero-avatar">
+            </div>
+
+            <h1>DAVID MENDOZA</h1>
+            <p class="subtitle">Computer Engineering Student & Technology Enthusiast</p>
+            
             <div class="social-links">
                 <a href="#" target="_blank">LinkedIn</a>
                 <a href="#" target="_blank">GitHub</a>
-                <a href="mailto:your.email@example.com">Email</a>
+                <a href="mailto:your.school@edu.com">Email</a>
             </div>
+            
+            <a href="#projects" class="scroll-down-btn">View My Work ↓</a>
         </div>
     </header>
 
-    <section id="projects">
-        <h2 class="section-title">Selected Projects</h2>
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <img src="images/placeholder.png" alt="Aircraft Tracker SDR Setup" class="project-img">
-                <div class="card-content">
-                    <h3>Aircraft Tracker</h3>
-                    <p>A real-time tracking system using RTL-SDR dongles to visualize aircraft data on a map.</p>
-                    <div class="tags">
-                        <span>Hardware</span>
-                        <span>SDR</span>
-                        <span>C++</span>
-                    </div>
-                    <a href="#" class="btn-link">View Code &rarr;</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="images/placeholder.png" alt="Liquid Analysis Sensor Array" class="project-img">
-                <div class="card-content">
-                    <h3>Liquid Analysis System</h3>
-                    <p>Sensor array system analyzing Turbidity, pH, and Temperature, displayed via LabVIEW.</p>
-                    <div class="tags">
-                        <span>LabVIEW</span>
-                        <span>Sensors</span>
-                        <span>Embedded</span>
-                    </div>
-                    <a href="#" class="btn-link">View Code &rarr;</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="images/placeholder.png" alt="Self Balancing Robot" class="project-img">
-                <div class="card-content">
-                    <h3>Self-Balancing Robot</h3>
-                    <p>PID control implementation using Tiva C Series board and ESP32 for object detection.</p>
-                    <div class="tags">
-                        <span>Robotics</span>
-                        <span>C</span>
-                        <span>ESP32</span>
-                    </div>
-                    <a href="#" class="btn-link">View Code &rarr;</a>
-                </div>
-            </div>
-
-             <div class="project-card">
-                 <div class="card-content">
-                    <h3>Carbon-Neutral Case Study</h3>
-                    <p>A strategic analysis of Copenhagen’s CPH 2025 Climate Plan.</p>
-                    <div class="tags">
-                        <span>Research</span>
-                        <span>Sustainability</span>
-                    </div>
-                    <a href="#" class="btn-link">View Presentation &rarr;</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Get in Touch</h2>
-        <p>I am currently open to internships and entry-level opportunities.</p>
+    <main>
         
-        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="contact-form">
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" name="email" id="email" required>
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                
+                <div class="about-wrapper">
+                    <div class="about-image-col">
+                        <img src="images/profile.jpg" alt="David Mendoza" class="about-avatar">
+                        
+                        <div class="about-socials">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="about-text-col">
+                        <h3>David Mendoza</h3>
+                        <p class="role-title">Engineering Student & Researcher</p>
+                        
+                        <p class="lead-text">
+                            I am a Computer Engineering student with a passion for embedded systems and software development. 
+                            Currently looking for internship opportunities to apply my skills in real-world scenarios.
+                        </p>
+                        <p>
+                            My background includes working with hardware sensors, C++ programming, and sustainable technology research. 
+                            I enjoy bridging the gap between hardware and software to create efficient solutions.
+                        </p>
+                        
+                        <a href="#contact" class="btn-link">Contact Me &rarr;</a>
+                    </div>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="5" required></textarea>
+        </section>
+
+        <section id="projects" class="content-section alt-bg">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="project-grid">
+                    
+                    <div class="project-card">
+                        <img src="images/aircraft.jpg" alt="Aircraft Tracker" class="project-img">
+                        <div class="card-content">
+                            <h3>Aircraft Tracker</h3>
+                            <p>Real-time tracking system using RTL-SDR dongles to visualize aircraft data on a map.</p>
+                            <div class="tags">
+                                <span>Hardware</span>
+                                <span>C++</span>
+                            </div>
+                            <a href="#" class="btn-link">View Code &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="images/liquid.jpg" alt="Liquid Analysis" class="project-img">
+                        <div class="card-content">
+                            <h3>Liquid Analysis System</h3>
+                            <p>Sensor array system analyzing Turbidity, pH, and Temperature via LabVIEW.</p>
+                            <div class="tags">
+                                <span>LabVIEW</span>
+                                <span>Embedded</span>
+                            </div>
+                            <a href="#" class="btn-link">View Code &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="images/robot.jpg" alt="Robot" class="project-img">
+                        <div class="card-content">
+                            <h3>Self-Balancing Robot</h3>
+                            <p>PID control implementation using Tiva C Series board and ESP32.</p>
+                            <div class="tags">
+                                <span>Robotics</span>
+                                <span>C</span>
+                            </div>
+                            <a href="#" class="btn-link">View Code &rarr;</a>
+                        </div>
+                    </div>
+
+                     <div class="project-card">
+                        <div class="card-content">
+                            <h3>Carbon-Neutral Study</h3>
+                            <p>A strategic analysis of Copenhagen’s CPH 2025 Climate Plan.</p>
+                            <div class="tags">
+                                <span>Research</span>
+                            </div>
+                            <a href="#" class="btn-link">Read Paper &rarr;</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <button type="submit" class="btn-submit">Send Message</button>
-        </form>
-    </section>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container narrow">
+                <h2 class="section-title">Contact Me</h2>
+                
+                <div class="contact-info-block">
+                    <p class="contact-details">
+                        <strong>Email:</strong> 
+                        <a href="mailto:your.school@edu.com">your.school@edu.com</a> 
+                        <span class="separator">||</span> 
+                        <a href="mailto:your.personal@gmail.com">your.personal@gmail.com</a>
+                    </p>
+                    <p class="form-instruction">...or use the following form</p>
+                </div>
+                
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                    <div class="form-row">
+                        <div class="input-col">
+                            <input type="text" name="name" placeholder="Your Name *" required>
+                            <input type="email" name="email" placeholder="Your Email *" required>
+                            <input type="tel" name="phone" placeholder="Your Phone (Optional)">
+                        </div>
+                        
+                        <div class="msg-col">
+                            <textarea name="message" placeholder="Your Message *" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>&copy; 2026 David Mendoza. Built with static HTML/CSS.</p>
+        <p>&copy; 2026 David Mendoza</p>
     </footer>
 
     <script src="script.js"></script>
