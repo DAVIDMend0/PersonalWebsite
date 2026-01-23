@@ -7,7 +7,7 @@
     --text-color: #f1f1f1;
     --heading-color: #ffffff;
     
-    /* Steel Blue */
+    /* Steel Blue Accent */
     --accent-color: #2980b9; 
     
     --card-bg: #222222;
@@ -15,6 +15,7 @@
     --nav-bg: rgba(0, 0, 0, 0.9);
     --input-bg: #333333; 
     
+    /* Toggle Switch Colors */
     --switch-bg: #1a1a1a;
     --switch-thumb: #2980b9;
 
@@ -124,6 +125,7 @@ body.light-mode .logo {
     transition: color var(--transition-speed) ease;
 }
 
+/* FIX: Nav Links turn Blue in Light Mode */
 body.light-mode .nav-links a {
     color: var(--accent-color);
 }
@@ -181,6 +183,7 @@ input:checked + .slider:before {
     display: flex; align-items: center; justify-content: center;
     text-align: center;
     color: #fff;
+    /* Replace URL with your actual hero image */
     background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center/cover;
     background-attachment: fixed; 
 }
@@ -370,4 +373,153 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
     .about-wrapper { flex-direction: column; text-align: center; }
     .hero-content h1 { font-size: 2.5rem; }
     .form-row { flex-direction: column; }
+}
+
+/* --- MODAL STYLES (NEW) --- */
+
+/* --- MODAL STYLES (NEW) --- */
+
+/* The dark background overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active { 
+    display: block; 
+    opacity: 1; 
+}
+
+/* The modal box itself */
+.modal {
+    /* CHANGED: Fixed positioning to center it on screen */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* Use translate to perfectly center it */
+    transform: translate(-50%, -50%) scale(0.9);
+    
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%; /* Responsive width */
+    max-height: 90vh;
+    overflow-y: auto; /* Scroll inside modal if tall */
+    
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    display: none;
+    z-index: 2001;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal.active { 
+    display: block; 
+    opacity: 1; 
+    /* Keep it centered and scale to normal size */
+    transform: translate(-50%, -50%) scale(1); 
+}
+
+/* Close button ('×') */
+.modal-close-btn {
+    position: absolute;
+    top: 20px; 
+    right: 25px;
+    font-size: 2.5rem;
+    line-height: 1;
+    background: none; 
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.2s;
+    /* Ensure close button is clickable */
+    z-index: 10;
+}
+.modal-close-btn:hover { color: var(--accent-color); }
+
+/* Modal Content Styles */
+.modal-header {
+    margin-bottom: 20px; 
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h3 { font-size: 2rem; margin: 0; }
+
+/* Gallery Images */
+.modal-gallery {
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 25px;
+}
+.gallery-img {
+    flex: 1; 
+    width: 100%; 
+    height: 250px;
+    object-fit: cover; 
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.modal-gallery img:only-child { flex: none; width: 100%; }
+
+.modal-body p { margin-bottom: 15px; line-height: 1.8; font-size: 1.05rem; }
+.modal-body strong { color: var(--heading-color); }
+
+/* Bottom Media Section */
+.modal-media-section {
+    margin-top: 30px; 
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.modal-media-section h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--heading-color); 
+    margin-bottom: 15px;
+}
+
+.modal-end-img {
+    width: 100%; 
+    max-height: 300px;
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-bottom: 20px; 
+    border: 1px solid var(--border-color);
+}
+
+.video-container {
+    position: relative; 
+    width: 100%;
+    border-radius: 8px; 
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: #000;
+}
+.video-container video { width: 100%; display: block; }
+
+/* Style the "Learn More" button to look like a link */
+button.btn-link {
+    background: none; border: none;
+    padding: 0; cursor: pointer;
+    font-family: inherit; text-align: left;
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 600px) {
+    .modal { padding: 25px; }
+    .modal-header h3 { font-size: 1.6rem; }
+    .modal-gallery { flex-direction: column; }
+    .gallery-img { height: 200px; }
 }
