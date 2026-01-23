@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Mendoza | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Check what this link is supposed to do-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"> <!-- Check what this link is supposed to do-->
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DM.</a> <!--I do not see the need for this to be a link-->
+            <ul class="nav-links">
+                <li class="toggle-container">
+                    <label class="theme-switch" for="checkbox" aria-label="Toggle Dark and Light Mode">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                  </label>
+                </li>
+                
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm David Mendoza.</h1>
+            <p class="subtitle">Computer Engineering Student & Technology Enthusiast.</p>
+            <div class="social-links">
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="mailto:your.email@example.com">Email</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="projects">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <img src="images/placeholder.png" alt="Aircraft Tracker SDR Setup" class="project-img">
+                <div class="card-content">
+                    <h3>Aircraft Tracker</h3>
+                    <p>A real-time tracking system using RTL-SDR dongles to visualize aircraft data on a map.</p>
+                    <div class="tags">
+                        <span>Hardware</span>
+                        <span>SDR</span>
+                        <span>C++</span>
+                    </div>
+                    <a href="#" class="btn-link">View Code &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/placeholder.png" alt="Liquid Analysis Sensor Array" class="project-img">
+                <div class="card-content">
+                    <h3>Liquid Analysis System</h3>
+                    <p>Sensor array system analyzing Turbidity, pH, and Temperature, displayed via LabVIEW.</p>
+                    <div class="tags">
+                        <span>LabVIEW</span>
+                        <span>Sensors</span>
+                        <span>Embedded</span>
+                    </div>
+                    <a href="#" class="btn-link">View Code &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/placeholder.png" alt="Self Balancing Robot" class="project-img">
+                <div class="card-content">
+                    <h3>Self-Balancing Robot</h3>
+                    <p>PID control implementation using Tiva C Series board and ESP32 for object detection.</p>
+                    <div class="tags">
+                        <span>Robotics</span>
+                        <span>C</span>
+                        <span>ESP32</span>
+                    </div>
+                    <a href="#" class="btn-link">View Code &rarr;</a>
+                </div>
+            </div>
+
+             <div class="project-card">
+                 <div class="card-content">
+                    <h3>Carbon-Neutral Case Study</h3>
+                    <p>A strategic analysis of Copenhagen’s CPH 2025 Climate Plan.</p>
+                    <div class="tags">
+                        <span>Research</span>
+                        <span>Sustainability</span>
+                    </div>
+                    <a href="#" class="btn-link">View Presentation &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <p>I am currently open to internships and entry-level opportunities.</p>
+        
+        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 David Mendoza. Built with static HTML/CSS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
