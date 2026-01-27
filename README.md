@@ -1,2 +1,3 @@
 # PersonalWebsite
-This the Personal Website for David Mendoza
+Welcome!
+This is the repository from which I host my personal website!
