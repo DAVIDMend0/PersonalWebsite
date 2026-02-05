@@ -93,28 +93,28 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// --- 4. REACTION TIMER GAME LOGIC ---
+// --- 4. REACTION TIMER GAME LOGIC (UPDATED) ---
     const gameStartBtn = document.getElementById('game-start-btn');
     const gameStopBtn = document.getElementById('game-stop-btn');
     const gameLights = document.querySelectorAll('.react-light');
+    const displayContainer = document.querySelector('.seven-segment-display'); // Get container to dim it
     const seg1 = document.getElementById('seg-1');
     const seg2 = document.getElementById('seg-2');
     const seg3 = document.getElementById('seg-3');
     const gameMessage = document.getElementById('game-message');
 
-    let gameState = 'idle'; // 'idle', 'sequence', 'waiting', 'finished'
+    let gameState = 'idle'; 
     let startTime = 0;
     let timerInterval = null;
     let sequenceTimeouts = [];
 
     function updateDisplay(ms) {
-        // Ensure it doesn't go over 999
         let clampedMs = Math.min(ms, 999);
-        // Format to 3 digits (e.g., 5 -> "005")
         let formatted = clampedMs.toString().padStart(3, '0');
         seg1.textContent = formatted[0];
         seg2.textContent = formatted[1];
         seg3.textContent = formatted[2];
+        return clampedMs;
     }
 
     function clearSequence() {
@@ -124,40 +124,73 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function resetGameUI() {
+        // Clear lights
         gameLights.forEach(light => {
-            light.classList.remove('red', 'green');
+            light.classList.remove('red', 'green', 'blinking');
         });
+        
+        // Reset Display
         updateDisplay(0);
+        displayContainer.classList.remove('dimmed');
+        
+        // Reset Buttons
+        gameStartBtn.textContent = "Start Sequence";
         gameStartBtn.disabled = false;
         gameStopBtn.disabled = true;
+        
+        gameMessage.textContent = "";
+        gameMessage.style.color = "";
+        
         gameState = 'idle';
     }
 
+    // --- TIMEOUT HANDLER (Too Slow) ---
+    function triggerTimeout() {
+        clearInterval(timerInterval);
+        gameState = 'finished';
+        
+        // Visuals for failure
+        gameMessage.textContent = "Too Slow! Try Again?";
+        gameMessage.style.color = "#e74c3c"; // Red text
+        
+        // Grey out numbers
+        displayContainer.classList.add('dimmed');
+        
+        // Blink lights red
+        gameLights.forEach(light => {
+            light.classList.remove('green');
+            light.classList.add('red', 'blinking');
+        });
+
+        // Enable Restart
+        gameStartBtn.textContent = "Try Again";
+        gameStartBtn.disabled = false;
+        gameStopBtn.disabled = true;
+    }
+
     gameStartBtn.addEventListener('click', () => {
-        if (gameState !== 'idle') return;
+        // If game is finished or idle, we reset and start
+        if (gameState !== 'idle') {
+            resetGameUI();
+        }
 
         gameState = 'sequence';
         gameMessage.textContent = "Watch the lights...";
         gameStartBtn.disabled = true;
-        gameStopBtn.disabled = false; // Enable stop for false start detection
+        gameStopBtn.disabled = false; 
         clearSequence();
-        resetGameUI();
-        // Re-disable start button after UI reset
-        gameStartBtn.disabled = true; 
-        gameStopBtn.disabled = false;
 
-
-        // Sequence: Light 1-4 turn RED one by one
-        let delay = 1000; // Start after 1 second
-        gameLights.forEach((light, index) => {
+        // Sequence: Lights turn RED one by one
+        let delay = 1000; 
+        gameLights.forEach((light) => {
             let t = setTimeout(() => {
                 light.classList.add('red');
             }, delay);
             sequenceTimeouts.push(t);
-            delay += 1000; // Add 1 second for the next light
+            delay += 1000; 
         });
 
-        // Random delay before turning GREEN (between 1 and 3.5 seconds after last red)
+        // Random delay for GREEN
         const randomWait = Math.random() * 2500 + 1000; 
         let finalT = setTimeout(() => {
             if (gameState !== 'falseStart') {
@@ -170,41 +203,54 @@ document.addEventListener("DOMContentLoaded", function() {
     function goGreen() {
         gameState = 'waiting';
         gameMessage.textContent = "GO!";
-        // Turn all lights green instantly
+        
         gameLights.forEach(light => {
             light.classList.remove('red');
             light.classList.add('green');
         });
         
-        // Start Timer
         startTime = Date.now();
         timerInterval = setInterval(() => {
             const elapsed = Date.now() - startTime;
-            updateDisplay(elapsed);
-        }, 10); // Update every 10ms
+            
+            // CHECK FOR TIMEOUT (If > 999ms)
+            if (elapsed >= 999) {
+                updateDisplay(999);
+                triggerTimeout();
+            } else {
+                updateDisplay(elapsed);
+            }
+        }, 10);
     }
 
     gameStopBtn.addEventListener('click', () => {
         if (gameState === 'sequence') {
-            // FALSE START! (Clicked before green)
+            // FALSE START
             gameState = 'falseStart';
             clearSequence();
-            gameMessage.textContent = "FALSE START! Too early.";
-            gameMessage.style.color = "#c0392b";
-            // Flash display to indicate error
-            seg1.textContent = "F"; seg2.textContent = "A"; seg3.textContent = "L";
-            setTimeout(resetGameUI, 2000);
+            gameMessage.textContent = "FALSE START!";
+            gameMessage.style.color = "#e74c3c";
             
+            seg1.textContent = "F"; seg2.textContent = "A"; seg3.textContent = "L";
+            
+            // Allow restart immediately
+            gameStartBtn.textContent = "Try Again";
+            gameStartBtn.disabled = false;
+            gameStopBtn.disabled = true;
+
         } else if (gameState === 'waiting') {
-            // SUCCESS!
+            // SUCCESS
             clearInterval(timerInterval);
             gameState = 'finished';
             const finalTime = Date.now() - startTime;
             updateDisplay(finalTime);
+            
             gameMessage.textContent = `Reaction Time: ${finalTime}ms`;
-            gameMessage.style.color = ""; // Reset color
+            gameMessage.style.color = "#2ecc71"; // Green text for success
+            
+            // Allow restart
+            gameStartBtn.textContent = "Play Again";
             gameStartBtn.disabled = false;
             gameStopBtn.disabled = true;
         }
     });
-    // --- END REACTION TIMER GAME LOGIC ---
