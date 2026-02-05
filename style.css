@@ -523,3 +523,89 @@ button.btn-link {
     .modal-gallery { flex-direction: column; }
     .gallery-img { height: 200px; }
 }
+
+
+/* --- REACTION TIMER GAME STYLES --- */
+
+.reaction-game-container {
+    background: #222; /* Dark background like a PCB board */
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* 1. Lights Row */
+.game-lights-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.react-light {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #444; /* Off state color */
+    border: 3px solid #333;
+    transition: all 0.1s ease;
+}
+
+/* Red LED State */
+.react-light.red {
+    background-color: #ff0000;
+    box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ffaaaa;
+    border-color: #cc0000;
+}
+
+/* Green LED State */
+.react-light.green {
+    background-color: #00ff00;
+    box-shadow: 0 0 15px #00ff00, inset 0 0 10px #aaffaa;
+    border-color: #00cc00;
+}
+
+/* 2. 7-Segment Display Simulation */
+.seven-segment-display {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font keeps digits aligned */
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ff0000; /* Classic red LED color */
+    background-color: #111;
+    display: inline-block;
+    padding: 10px 30px;
+    border: 4px solid #333;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Glowing effect */
+    letter-spacing: 10px;
+}
+
+/* 3. Controls */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Make the stop button look distinct */
+.game-stop-btn {
+    background-color: #c0392b; /* Reddish stop button */
+}
+.game-stop-btn:hover { background-color: #e74c3c; }
+
+/* Styles for when buttons are disabled during game states */
+.game-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#game-message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--accent-color);
+    min-height: 1.7em; /* Reserve space so layout doesn't jump */
+}

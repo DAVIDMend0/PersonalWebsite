@@ -308,12 +308,33 @@
                 <img src="WebsiteImages/ReactionTimer/setup.jpeg" alt="Intel FPGA Board" class="gallery-img">
             </div>
             <p><strong>Overview:</strong> A Microprocessor Architecture project built on an Intel FPGA using Verilog, simulating the "start lights" found in racing.</p>
+            <p><strong>Functionality:</strong> The board's LEDs simulate a countdown sequence. Once the light turns green, an internal millisecond timer begins. The user stops the timer via a physical button, and the precise reaction time is displayed on the board's 7-segment display modules.</p>
+            
             <div class="modal-media-section">
-                <h4>Device in Action</h4>
-                <div class="video-container">
-                    <video controls><source src="WebsiteImages/ReactionTimer/demo.mov" type="video/quicktime"></video>
+                <h4>Interactive Simulation</h4>
+                <p>Test your reaction time below, just like on the real hardware! Wait for all 4 red lights, then click STOP as soon as they turn green.</p>
+                
+                <div class="reaction-game-container">
+                    <div class="game-lights-row">
+                        <div class="react-light" id="light-1"></div>
+                        <div class="react-light" id="light-2"></div>
+                        <div class="react-light" id="light-3"></div>
+                        <div class="react-light" id="light-4"></div>
+                    </div>
+
+                    <div class="seven-segment-display">
+                        <span id="seg-1">0</span>
+                        <span id="seg-2">0</span>
+                        <span id="seg-3">0</span>
+                    </div>
+
+                    <div class="game-controls">
+                        <button id="game-start-btn" class="btn-submit">Start Sequence</button>
+                        <button id="game-stop-btn" class="btn-submit game-stop-btn" disabled>STOP!</button>
+                    </div>
+                    <p id="game-message"></p>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 
