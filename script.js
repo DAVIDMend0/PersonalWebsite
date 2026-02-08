@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // --- 4. CAROUSEL LOGIC (ROBUST VERSION) ---
+    // --- 4. CAROUSEL LOGIC ---
     const carousels = document.querySelectorAll('.carousel');
 
     carousels.forEach(carousel => {
@@ -126,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     slide.classList.remove('current-slide');
                     slide.style.display = 'none';
                     slide.style.opacity = '0';
-                    // Pause video on hidden slide
                     const video = slide.querySelector('video');
                     if(video) video.pause();
                 }

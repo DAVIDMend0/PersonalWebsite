@@ -80,7 +80,7 @@
                 <div class="project-grid">
                     
                     <div class="project-card">
-                        <img src="WebsiteImages/AircarftTracker/AT_IniSetUp.JPG" alt="Aircraft Tracker" class="project-img">
+                        <img src="WebsiteImages/AircraftTracker/AT_WorldFR.png" alt="Aircraft Tracker" class="project-img">
                         <div class="card-content">
                             <h3>Aircraft Tracker</h3>
                             <p>Radio signal interception system detecting aircraft type and callsigns using USB/Antenna hardware.</p>
@@ -150,12 +150,12 @@
                     </div>
 
                     <div class="project-card">
-                        <img src="WebsiteImages/PythonSDK/main.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Python+Project'" alt="Python SDK" class="project-img">
+                        <img src="WebsiteImages/SmallVGG/TVGG_Results.png" alt="Tiny-VGG Results" class="project-img">
                         <div class="card-content">
-                            <h3>Python SDK</h3>
-                            <p>Personal project building a custom SDK to master Python API interactions and library structure.</p>
-                            <div class="tags"><span>Python</span><span>API</span><span>Software</span></div>
-                            <button class="btn-link open-modal-btn" data-modal-target="#modal-python">Learn More &rarr;</button>
+                            <h3>Tiny-VGG Classifier</h3>
+                            <p>A lightweight Computer Vision model implementation using PyTorch to classify images with high accuracy.</p>
+                            <div class="tags"><span>Python</span><span>PyTorch</span><span>Computer Vision</span></div>
+                            <button class="btn-link open-modal-btn" data-modal-target="#modal-vgg">Learn More &rarr;</button>
                         </div>
                     </div>
 
@@ -205,15 +205,17 @@
             <div class="carousel">
                 <div class="carousel-track-container">
                     <ul class="carousel-track">
-                        <li class="carousel-slide current-slide">
-                            <img src="WebsiteImages/AircraftTracker/AT_IniSetUp.JPG" alt="Setup">
-                        </li>
+                        <li class="carousel-slide current-slide"><img src="WebsiteImages/AircraftTracker/AT_WorldFR.png" alt="Flight Map"></li>
+                        <li class="carousel-slide"><img src="WebsiteImages/AircraftTracker/AT_IniSetUp.JPG" alt="Setup"></li>
                     </ul>
                 </div>
+                <button class="carousel-button carousel-button--left">&lt;</button>
+                <button class="carousel-button carousel-button--right">&gt;</button>
             </div>
 
             <p><strong>Overview:</strong> Developed for the Circuit Communications class, this project utilizes a USB RTL-SDR dongle connected to an antenna to capture live radio frequency signals from nearby aircraft.</p>
             <p><strong>Technical Description:</strong> The system intercepts Automatic Dependent Surveillance–Broadcast (ADS-B) signals at 1090 MHz. By processing these raw IQ signals, the system extracts critical data frames containing the aircraft's ICAO address, callsign, altitude, and velocity. This project focused purely on hardware configuration and signal processing theory.</p>
+            <p><em>Note: World Map image courtesy of <a href="https://www.flightradar24.com/blog/inside-flightradar24/pull-down-menu/" target="_blank" style="color:var(--accent-color);">FlightRadar24</a>.</em></p>
 
             <div class="modal-media-section">
                 <h4>Project Demos</h4>
@@ -290,17 +292,7 @@
             <p><strong>Overview:</strong> A Sensor Applications class project designed to read and visualize water quality data remotely.</p>
             <p><strong>Technical Description:</strong> Analog sensors measure turbidity and temperature. An Arduino microcontroller performs ADC conversion and transmits raw data strings over UART to a host PC. A custom LabVIEW application parses this data, displays it on a local dashboard, and makes HTTP POST requests to the ThingSpeak API for cloud logging.</p>
 
-            <div class="modal-media-section">
-                <h4>Project Demos</h4>
-                <div class="carousel">
-                    <div class="carousel-track-container">
-                        <ul class="carousel-track">
-                            <li class="carousel-slide current-slide"><video controls><source src="WebsiteImages/WaterMonitoring/WM_Vid.mp4" type="video/mp4"></video></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-        </div>
     </div>
 
     <div class="modal" id="modal-timer">
@@ -322,6 +314,7 @@
 
             <p><strong>Overview:</strong> A Microprocessor Architecture project built on an Intel FPGA using Verilog, simulating the "start lights" found in racing.</p>
             <p><strong>Technical Description:</strong> Implemented using Verilog HDL. The logic includes a Linear Feedback Shift Register (LFSR) for random wait times, a millisecond counter driven by the board's 50MHz clock, and a Binary-to-BCD converter to drive the 7-segment displays. State machines manage the IDLE, COUNTDOWN, and TIMING states.</p>
+            <p><em>Note: Starting Light reference image from <a href="https://pixelcom.io/motorsport/circuits/starting-lights" target="_blank" style="color:var(--accent-color);">PixelCom</a>.</em></p>
 
             <div class="modal-media-section">
                 <h4>Interactive Simulation</h4>
@@ -448,20 +441,24 @@
         </div>
     </div>
 
-    <div class="modal" id="modal-python">
+    <div class="modal" id="modal-vgg">
         <button class="modal-close-btn">&times;</button>
-        <div class="modal-header"><h3>Python SDK</h3></div>
+        <div class="modal-header"><h3>Tiny-VGG Classifier</h3></div>
         <div class="modal-body">
             <div class="carousel">
                 <div class="carousel-track-container">
                     <ul class="carousel-track">
-                        <li class="carousel-slide current-slide"><img src="WebsiteImages/PythonSDK/main.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=Python+Code+Structure'" alt="Code"></li>
+                        <li class="carousel-slide current-slide"><img src="WebsiteImages/SmallVGG/TVGG_Results.png" alt="Results"></li>
+                        <li class="carousel-slide"><img src="WebsiteImages/SmallVGG/TVGG_Chart.png" alt="Training Chart"></li>
+                        <li class="carousel-slide"><img src="WebsiteImages/SmallVGG/VGG_Arch.png" alt="Architecture"></li>
                     </ul>
                 </div>
+                <button class="carousel-button carousel-button--left">&lt;</button>
+                <button class="carousel-button carousel-button--right">&gt;</button>
             </div>
 
-            <p><strong>Overview:</strong> A personal initiative to deepen understanding of Software Development Kits (SDKs) and API integration.</p>
-            <p><strong>Technical Description:</strong> This project involved designing a Pythonic wrapper for a REST API. It uses the `requests` library to handle HTTP methods, implements a custom Exception class for error handling, and uses `setuptools` to package the project for PyPI distribution. Key focus was on object-oriented design and clean documentation strings.</p>
+            <p><strong>Overview:</strong> A lightweight Computer Vision model implementation using PyTorch to classify images with high accuracy.</p>
+            <p><strong>Technical Description:</strong> This project replicates the famous VGG (Visual Geometry Group) architecture, scaled down to a "Tiny" version for efficient training. Built with PyTorch, it features sequential convolutional blocks (Conv2d, ReLU, MaxPool) followed by a classifier head. The project includes a custom dataset loader, training loop visualization (Loss/Accuracy), and model evaluation scripts.</p>
         </div>
     </div>
 

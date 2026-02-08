@@ -203,7 +203,7 @@ body.light-mode #hero h1 { color: var(--accent-color); }
     padding: 4px 8px; transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* "LEARN MORE" LINK (Clean Text Style) */
+/* "LEARN MORE" LINK */
 button.btn-link {
     background: none; border: none; padding: 0; cursor: pointer;
     font-family: 'Lato', sans-serif; font-size: 0.85rem; 
@@ -287,7 +287,7 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
     font-family: 'Montserrat', sans-serif; color: var(--heading-color); margin-bottom: 15px;
 }
 
-/* --- 11. CAROUSEL STYLES (UPDATED) --- */
+/* --- 11. CAROUSEL STYLES --- */
 .carousel {
     position: relative; width: 100%; max-width: 800px;
     height: 400px; margin: 0 auto 30px auto;
@@ -310,15 +310,19 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
 /* Discrete Arrows */
 .carousel-button {
     position: absolute; top: 50%; transform: translateY(-50%);
-    background: transparent; border: none; color: rgba(255, 255, 255, 0.3);
+    background: transparent; border: none; 
+    color: rgba(255, 255, 255, 0.3); /* Transparent by default */
     font-size: 3rem; cursor: pointer; padding: 20px; z-index: 10;
     transition: color 0.3s, transform 0.2s;
 }
-.carousel-button:hover { color: var(--accent-color); transform: translateY(-50%) scale(1.1); }
+.carousel-button:hover { 
+    color: var(--accent-color); /* Blue on hover */
+    transform: translateY(-50%) scale(1.1); 
+}
 .carousel-button--left { left: 0; }
 .carousel-button--right { right: 0; }
 
-/* Indicators (Dots) */
+/* Carousel Dots */
 .carousel-nav {
     display: flex; justify-content: center; padding: 10px 0;
     position: absolute; bottom: 15px; width: 100%; z-index: 10;
@@ -328,7 +332,9 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
     background: rgba(255, 255, 255, 0.3); margin: 0 6px; cursor: pointer;
     transition: background 0.3s;
 }
-.carousel-indicator.current-slide { background: var(--accent-color); box-shadow: 0 0 5px rgba(0,0,0,0.5); }
+.carousel-indicator.current-slide { 
+    background: var(--accent-color); box-shadow: 0 0 5px rgba(0,0,0,0.5); 
+}
 
 /* --- 12. REACTION GAME STYLES --- */
 .reaction-game-container {
