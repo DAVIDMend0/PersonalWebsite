@@ -83,6 +83,16 @@ nav.scrolled {
 }
 body.light-mode .logo { color: var(--accent-color); }
 
+/* HAMBURGER MENU (Hidden on Desktop) */
+.hamburger {
+    display: none; cursor: pointer;
+}
+.bar {
+    display: block; width: 25px; height: 3px; margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--heading-color);
+}
+
 .nav-links { display: flex; gap: 25px; align-items: center; }
 .nav-links a { 
     font-size: 0.85rem; font-weight: 700; text-transform: uppercase; 
@@ -307,20 +317,26 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
 .carousel-slide.current-slide { display: flex; opacity: 1; }
 .carousel-slide img, .carousel-slide video { width: 100%; height: 100%; object-fit: contain; }
 
-/* Discrete Arrows */
+/* Discrete Arrows (Circular) */
 .carousel-button {
     position: absolute; top: 50%; transform: translateY(-50%);
-    background: transparent; border: none; 
-    color: rgba(255, 255, 255, 0.3); /* Transparent by default */
-    font-size: 3rem; cursor: pointer; padding: 20px; z-index: 10;
-    transition: color 0.3s, transform 0.2s;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark circle */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    width: 45px; height: 45px; /* Fixed square size for circle */
+    border-radius: 50%; /* Make it circular */
+    font-size: 1.5rem; 
+    cursor: pointer; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
 }
 .carousel-button:hover { 
-    color: var(--accent-color); /* Blue on hover */
+    background: var(--accent-color); 
+    border-color: var(--accent-color);
     transform: translateY(-50%) scale(1.1); 
 }
-.carousel-button--left { left: 0; }
-.carousel-button--right { right: 0; }
+.carousel-button--left { left: 15px; }
+.carousel-button--right { right: 15px; }
 
 /* Carousel Dots */
 .carousel-nav {
@@ -368,16 +384,38 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
 #game-message { margin-top: 15px; font-weight: bold; color: var(--accent-color); min-height: 1.7em; }
 
 /* --- 13. MOBILE RESPONSIVENESS --- */
-@media (max-width: 600px) {
-    .modal { padding: 25px; }
+@media (max-width: 768px) {
+    /* Show Hamburger */
+    .hamburger { display: block; z-index: 1001; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Nav Links Slide Down */
+    .nav-links {
+        position: fixed; left: -100%; top: 70px; gap: 0;
+        flex-direction: column; background-color: var(--nav-bg);
+        width: 100%; text-align: center; transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+    }
+    .nav-links.active { left: 0; }
+    .nav-links li { margin: 15px 0; }
+
+    /* General Adjustments */
+    .modal { padding: 25px; width: 95%; }
     .modal-header h3 { font-size: 1.6rem; }
     .carousel { height: 250px; }
-    .carousel-button { font-size: 2rem; padding: 10px; }
+    .carousel-button { width: 35px; height: 35px; font-size: 1.2rem; }
+    
+    /* Game Adjustments */
     .reaction-game-container { padding: 15px; }
     .seven-segment-display { font-size: 2.5rem; letter-spacing: 5px; width: 100%; box-sizing: border-box; }
     .game-lights-row { gap: 10px; }
     .react-light { width: 30px; height: 30px; }
-    .about-wrapper { flex-direction: column; text-align: center; }
+    
+    /* Layout Stacking */
     .hero-content h1 { font-size: 2.5rem; }
+    .about-wrapper { flex-direction: column; text-align: center; }
     .form-row { flex-direction: column; }
 }

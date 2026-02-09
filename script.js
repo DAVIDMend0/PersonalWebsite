@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- 1. Sticky Navbar ---
+    // --- 1. Navbar & Hamburger Logic ---
     const navbar = document.getElementById("navbar");
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-links");
+
     window.onscroll = function() {
         if (window.scrollY > 20) {
             navbar.classList.add("scrolled");
@@ -9,6 +12,17 @@ document.addEventListener("DOMContentLoaded", function() {
             navbar.classList.remove("scrolled");
         }
     };
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".nav-links a").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
 
     // --- 2. Theme Toggle ---
     const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
@@ -23,7 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleSwitch.checked = true;
         }
     } else {
-        toggleSwitch.checked = true; 
+        // Default to Light Mode
+        body.classList.add('light-mode');
+        toggleSwitch.checked = false;
     }
     toggleSwitch.addEventListener('change', function(e) {
         if (e.target.checked) {
@@ -78,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // --- 4. CAROUSEL LOGIC ---
+    // --- 4. CAROUSEL LOGIC (Auto-play + Swipe) ---
     const carousels = document.querySelectorAll('.carousel');
 
     carousels.forEach(carousel => {
@@ -86,37 +102,34 @@ document.addEventListener("DOMContentLoaded", function() {
         const slides = Array.from(track.children);
         const nextButton = carousel.querySelector('.carousel-button--right');
         const prevButton = carousel.querySelector('.carousel-button--left');
-        
-        // Dynamic Nav Dots
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        // Create Dots
         const nav = document.createElement('div');
         nav.classList.add('carousel-nav');
         carousel.appendChild(nav);
 
-        // Hide controls if only 1 slide
         if (slides.length <= 1) {
             if(nextButton) nextButton.style.display = 'none';
             if(prevButton) prevButton.style.display = 'none';
             nav.style.display = 'none';
         }
 
-        // Create dots based on slide count
         slides.forEach((_, index) => {
             const indicator = document.createElement('button');
             indicator.classList.add('carousel-indicator');
             if (index === 0) indicator.classList.add('current-slide');
             nav.appendChild(indicator);
-            
-            // Click dot to jump
             indicator.addEventListener('click', () => {
                 moveToSlide(index);
+                resetTimer();
             });
         });
 
         const dots = Array.from(nav.children);
-        let currentIndex = 0;
 
         const moveToSlide = (targetIndex) => {
-            // Update Slide Visibility
             slides.forEach((slide, idx) => {
                 if (idx === targetIndex) {
                     slide.classList.add('current-slide');
@@ -130,23 +143,38 @@ document.addEventListener("DOMContentLoaded", function() {
                     if(video) video.pause();
                 }
             });
-
-            // Update Dots
             dots.forEach((dot, idx) => {
                 if (idx === targetIndex) dot.classList.add('current-slide');
                 else dot.classList.remove('current-slide');
             });
-
             currentIndex = targetIndex;
         };
 
-        // Initialize state
-        moveToSlide(0);
+        // --- Auto Play (30s) ---
+        const startTimer = () => {
+            if (slides.length > 1) {
+                autoPlayInterval = setInterval(() => {
+                    const newIndex = (currentIndex + 1) % slides.length;
+                    moveToSlide(newIndex);
+                }, 30000); // 30 seconds
+            }
+        };
 
+        const resetTimer = () => {
+            clearInterval(autoPlayInterval);
+            startTimer();
+        };
+
+        // Initialize
+        moveToSlide(0);
+        startTimer();
+
+        // Button Listeners
         if(nextButton) {
             nextButton.addEventListener('click', () => {
                 const newIndex = (currentIndex + 1) % slides.length;
                 moveToSlide(newIndex);
+                resetTimer();
             });
         }
 
@@ -154,13 +182,45 @@ document.addEventListener("DOMContentLoaded", function() {
             prevButton.addEventListener('click', () => {
                 const newIndex = (currentIndex - 1 + slides.length) % slides.length;
                 moveToSlide(newIndex);
+                resetTimer();
             });
+        }
+
+        // --- Touch / Swipe Logic ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            if (slides.length <= 1) return;
+            // Threshold for swipe (50px)
+            if (touchStartX - touchEndX > 50) {
+                // Swipe Left (Next)
+                const newIndex = (currentIndex + 1) % slides.length;
+                moveToSlide(newIndex);
+                resetTimer();
+            }
+            if (touchEndX - touchStartX > 50) {
+                // Swipe Right (Prev)
+                const newIndex = (currentIndex - 1 + slides.length) % slides.length;
+                moveToSlide(newIndex);
+                resetTimer();
+            }
         }
     });
 
     // --- 5. REACTION TIMER GAME ---
     const gameStartBtn = document.getElementById('game-start-btn');
     if(gameStartBtn) { 
+        // ... (Keep existing game logic from previous step exactly as is) ...
         const gameStopBtn = document.getElementById('game-stop-btn');
         const gameLights = document.querySelectorAll('.react-light');
         const displayContainer = document.querySelector('.seven-segment-display');
