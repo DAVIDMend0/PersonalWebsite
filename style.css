@@ -438,3 +438,62 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
     .game-lights-row { gap: 10px; }
     .react-light { width: 30px; height: 30px; }
 }
+
+/* --- SKILLS SECTION --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skill-category {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.skill-category h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skill-category h3 i {
+    color: var(--accent-color);
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-list li {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: var(--text-color);
+    opacity: 0.9;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle divider */
+}
+
+/* Light mode adjustment for the divider */
+body.light-mode .skill-list li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.skill-list li:last-child {
+    border-bottom: none;
+}
