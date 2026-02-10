@@ -383,26 +383,50 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
 .game-controls button:disabled { opacity: 0.5; cursor: not-allowed; background-color: #555; }
 #game-message { margin-top: 15px; font-weight: bold; color: var(--accent-color); min-height: 1.7em; }
 
-/* --- 13. MOBILE RESPONSIVENESS --- */
+/* --- MOBILE RESPONSIVENESS (UPDATED) --- */
 @media (max-width: 768px) {
     /* Show Hamburger */
     .hamburger { display: block; z-index: 1001; }
+    
+    /* Hamburger Animation to "X" */
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    /* Nav Links Slide Down */
+    /* Nav Links Dropdown Animation */
     .nav-links {
-        position: fixed; left: -100%; top: 70px; gap: 0;
-        flex-direction: column; background-color: var(--nav-bg);
-        width: 100%; text-align: center; transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        position: fixed; 
+        left: 0; 
+        top: 70px; /* Height of navbar */
+        width: 100%; 
+        background-color: var(--nav-bg);
+        flex-direction: column; 
+        text-align: center; 
+        gap: 0;
         padding: 20px 0;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        
+        /* NEW ANIMATION: Unfold from top */
+        transform: scaleY(0); 
+        transform-origin: top; /* Grows from the top down */
+        opacity: 0;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
-    .nav-links.active { left: 0; }
+
+    /* Active State (Visible) */
+    .nav-links.active { 
+        transform: scaleY(1); 
+        opacity: 1;
+    }
+
     .nav-links li { margin: 15px 0; }
 
-    /* General Adjustments */
+    /* Adjust Layouts */
+    .hero-content h1 { font-size: 2.5rem; }
+    .about-wrapper { flex-direction: column; text-align: center; }
+    .form-row { flex-direction: column; }
+    
+    /* Adjust Modals */
     .modal { padding: 25px; width: 95%; }
     .modal-header h3 { font-size: 1.6rem; }
     .carousel { height: 250px; }
@@ -413,9 +437,4 @@ footer { text-align: center; padding: 40px; background: #000; color: #555; font-
     .seven-segment-display { font-size: 2.5rem; letter-spacing: 5px; width: 100%; box-sizing: border-box; }
     .game-lights-row { gap: 10px; }
     .react-light { width: 30px; height: 30px; }
-    
-    /* Layout Stacking */
-    .hero-content h1 { font-size: 2.5rem; }
-    .about-wrapper { flex-direction: column; text-align: center; }
-    .form-row { flex-direction: column; }
 }
